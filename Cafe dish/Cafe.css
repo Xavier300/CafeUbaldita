@@ -1,0 +1,204 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #d6d8b5;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .banner {
+    position: relative;
+    width: 100%;
+    height: calc(100vh - 100px);
+    background-image: url('Header Background.jpg');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: rgb(255, 255, 255);
+    text-align: center;
+  }
+
+.banner h1 {
+    font-size: 4.2rem; 
+    margin: 0;
+    text-align: left; 
+    padding-left: 10px; 
+    position: absolute; 
+    left: 150px; 
+    top: 20%; 
+    font-family: 'Inter', sans-serif; 
+    font-weight: 600; 
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); 
+}
+
+.banner p {
+  font-size: 1.5rem;
+  margin: 10px 0 0;
+  font-family: 'Island Moments', cursive;
+  font-style: italic;
+  color: white;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+  padding-right: 900px;
+  position: relative;
+  top: 10px;
+}
+
+@media only screen and (max-width: 600px) {
+  .banner p {
+    padding-right: 10px;
+    font-size: 1.2rem;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .banner p {
+    padding-right: 5px;
+    font-size: 1rem;
+  }
+}
+
+.banner p {
+  font-size: 1.2rem;
+  margin: 10px 0;
+}
+
+.banner nav {
+    position: absolute;
+        top: 20px;
+        right: 20px;
+}
+  
+.banner nav a {
+        color: rgb(255, 255, 255);
+        margin: 0 10px;
+        text-decoration: none;
+        font-weight: bold;
+}
+
+
+.banner .buttons {
+    display: flex;
+    gap: 469px;
+    position: absolute;
+    bottom: 100px;
+  }
+
+  .banner button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #474D49;
+    color: #ffffff;
+    transition: background-color 0.3s;
+  }
+
+  .banner button:hover {
+    background-color: #fff;
+    color: #2b2b2b;
+  }
+
+  .menu-header {
+    text-align: center;
+    margin: 20px 0;
+  }
+
+  .menu-header h1 {
+    font-size: 2.5rem;
+    margin: 0;
+  }
+
+  .container {
+    display: flex;
+    gap: 20px;
+    max-width: 1200px;
+    margin: 20px;
+    flex-wrap: wrap;
+  }
+
+  .image-gallery {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    flex: 1;
+  }
+
+  .image-gallery img {
+    width: 100%;
+    border-radius: 10px;
+    object-fit: cover;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .text-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #aeb791;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .text-section p {
+    font-size: 25;
+    line-height: 1.6;
+  }
+
+  .highlight-section {
+      font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+      width: 100%;
+      height: auto;
+      background-image: url('Background 2.jpg');
+      background-size: cover;
+      background-position: center;
+      color: rgb(255, 255, 255);
+      text-align: center;
+      padding: 50px 20px;
+  }
+
+  .highlight-section p {
+    font-size: 1.2rem;
+    margin: 10px 0;
+  }
+
+  .about {
+          background-color: #C0C78C;
+          width: 100%;
+          padding: 40px;
+          text-align: center;
+          border-radius: 10px;
+          margin-bottom: 50px;
+      }
+  .about h2 {
+          font-size: 2rem;
+          margin-bottom: 20px;
+      }
+  .about p {
+          max-width: 600px;
+          margin: 0 auto;
+      }
+
+  .footer {
+          background-color: #131F22;
+          width: 100%;
+          color: white;
+          text-align: center;
+          padding: 20px;
+      }
+  .footer a {
+          color: white;
+          text-decoration: none;
+          margin: 0 10px;
+      }
+  .footer .contact-info {
+          margin-top: 20px;
+  }
