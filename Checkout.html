@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="./Cafe image/Logo.png">
-    <title>Checkout</title>
+    <title>Checkoutt</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -17,7 +17,8 @@
             height: 100vh;
         }
         .cart-container {
-            width: 70%;
+            width: 90%;
+            max-width: 600px;
             background-color: #a5ad85;
             border-radius: 10px;
             padding: 20px;
@@ -31,7 +32,7 @@
         }
         header h1 {
             margin: 0;
-            font-size: 24px;
+            font-size: 20px;
         }
         header .back-button, header .cart-icon {
             font-size: 24px;
@@ -45,6 +46,7 @@
         .cart-table th, .cart-table td {
             border: 1px solid #ccc;
             padding: 10px;
+            font-size: 14px;
         }
         .cart-table th {
             background-color: #8a9173;
@@ -55,8 +57,8 @@
             gap: 10px;
         }
         .cart-items img {
-            width: 50px;
-            height: 50px;
+            width: 40px;
+            height: 40px;
             border-radius: 5px;
             object-fit: cover;
         }
@@ -65,8 +67,18 @@
             gap: 10px;
             align-items: center;
         }
-        .quantity-controls span {
+        .quantity-controls button {
+            background-color: #5c755e;
+            color: white;
+            border: none;
+            padding: 5px 10px;
             font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            min-width: 30px;
+        }
+        .quantity-controls button:hover {
+            background-color: #486148;
         }
         .submit-button {
             display: flex;
@@ -85,38 +97,29 @@
         .submit-button button:hover {
             background-color: #486148;
         }
-        .empty-cart-message {
-            text-align: center;
-            color: #b22222;
-            font-size: 18px;
-            margin-top: 20px;
+        .remove-button {
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            font-size: 14px;
+            border-radius: 5px;
+            cursor: pointer;
         }
-
-        /* Mobile Responsiveness */
-        @media (max-width: 768px) {
-            .cart-container {
-                width: 90%;
-                padding: 15px;
-            }
-            header h1 {
-                font-size: 20px;
-            }
+        .remove-button:hover {
+            background-color: #c0392b;
+        }
+        @media (max-width: 600px) {
             .cart-table th, .cart-table td {
-                padding: 8px;
+                font-size: 12px;
             }
-            .cart-items img {
-                width: 40px;
-                height: 40px;
-            }
-            .quantity-controls span {
+            .quantity-controls button {
                 font-size: 14px;
+                padding: 3px 8px;
             }
-            .submit-button button {
-                padding: 8px 16px;
-                font-size: 14px;
-            }
-            .empty-cart-message {
-                font-size: 16px;
+            .remove-button {
+                font-size: 12px;
+                padding: 3px 8px;
             }
         }
     </style>
@@ -125,8 +128,8 @@
     <div class="cart-container">
         <header>
             <a href="Our Product.html" class="back-button" style="text-decoration: none; color: inherit;">&#8592;</a>
-            <h1>Checkout</h1>
-            <a href="Cart.html" style="text-decoration: none;"><span class="cart-icon">&#128722;</span></a>
+            <h1>My Cart</h1>
+            <span class="cart-icon">&#128722;</span>
         </header>
 
         <table class="cart-table">
@@ -135,11 +138,11 @@
                     <th>Item</th>
                     <th>Quantity</th>
                     <th>Price</th>
-                    <th>Total</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody id="cart-items">
-                <!-- Cart items will be rendered here -->
+                <!-- Cart items will be dynamically injected here -->
             </tbody>
             <tfoot>
                 <tr>
@@ -150,13 +153,7 @@
         </table>
 
         <div class="submit-button">
-            <a href="Order Form.html" id="order-button" style="display: none;">
-                <button type="button">Place Order</button>
-            </a>
-        </div>
-
-        <div class="empty-cart-message" id="empty-cart-message" style="display: none;">
-            Your cart is empty! Please add items to proceed with the order.
+            <a href="Checkout.html"><button type="button">Confirm</button></a>
         </div>
     </div>
 
@@ -175,15 +172,7 @@
             cartTableBody.innerHTML = '';
             let totalPrice = 0;
 
-            if (cartItems.length === 0) {
-                document.getElementById('order-button').style.display = 'none';  // Hide Place Order button
-                document.getElementById('empty-cart-message').style.display = 'block';  // Show empty cart message
-            } else {
-                document.getElementById('order-button').style.display = 'block';  // Show Place Order button
-                document.getElementById('empty-cart-message').style.display = 'none';  // Hide empty cart message
-            }
-
-            cartItems.forEach((item) => {
+            cartItems.forEach((item, index) => {
                 const itemTotalPrice = item.price * item.quantity;
                 totalPrice += itemTotalPrice;
 
@@ -197,17 +186,45 @@
                     </td>
                     <td>
                         <div class="quantity-controls">
+                            <button class="decrease" data-index="${index}">-</button>
                             <span class="quantity">${item.quantity}</span>
+                            <button class="increase" data-index="${index}">+</button>
                         </div>
                     </td>
-                    <td>PHP ${item.price.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</td>
-                    <td class="price">PHP ${itemTotalPrice.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</td>
+                    <td class="price">PHP ${itemTotalPrice.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')}</td>
+                    <td><button class="remove-button" data-index="${index}">Remove</button></td>
                 `;
                 cartTableBody.appendChild(row);
             });
 
-            document.getElementById('total-price').textContent = `PHP ${totalPrice.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}`;
+            document.getElementById('total-price').textContent = `PHP ${totalPrice.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')}`;
         }
+
+        function updateQuantity(index, action) {
+            const cartItems = getCartItems();
+            if (action === 'increase') cartItems[index].quantity++;
+            if (action === 'decrease' && cartItems[index].quantity > 1) cartItems[index].quantity--;
+
+            saveCartItems(cartItems);
+            renderCart();
+        }
+
+        function removeItem(index) {
+            const cartItems = getCartItems();
+            cartItems.splice(index, 1);
+            saveCartItems(cartItems);
+            renderCart();
+        }
+
+        document.body.addEventListener('click', (event) => {
+            if (event.target.classList.contains('increase')) {
+                updateQuantity(event.target.dataset.index, 'increase');
+            } else if (event.target.classList.contains('decrease')) {
+                updateQuantity(event.target.dataset.index, 'decrease');
+            } else if (event.target.classList.contains('remove-button')) {
+                removeItem(event.target.dataset.index);
+            }
+        });
 
         renderCart();
     </script>
