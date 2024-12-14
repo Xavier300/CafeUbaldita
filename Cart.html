@@ -17,7 +17,8 @@
             height: 100vh;
         }
         .cart-container {
-            width: 70%;
+            width: 90%;
+            max-width: 600px;
             background-color: #a5ad85;
             border-radius: 10px;
             padding: 20px;
@@ -31,7 +32,7 @@
         }
         header h1 {
             margin: 0;
-            font-size: 24px;
+            font-size: 20px;
         }
         header .back-button, header .cart-icon {
             font-size: 24px;
@@ -45,6 +46,7 @@
         .cart-table th, .cart-table td {
             border: 1px solid #ccc;
             padding: 10px;
+            font-size: 14px;
         }
         .cart-table th {
             background-color: #8a9173;
@@ -55,8 +57,8 @@
             gap: 10px;
         }
         .cart-items img {
-            width: 50px;
-            height: 50px;
+            width: 40px;
+            height: 40px;
             border-radius: 5px;
             object-fit: cover;
         }
@@ -73,6 +75,7 @@
             font-size: 16px;
             border-radius: 5px;
             cursor: pointer;
+            min-width: 30px;
         }
         .quantity-controls button:hover {
             background-color: #486148;
@@ -99,12 +102,25 @@
             color: white;
             border: none;
             padding: 5px 10px;
-            font-size: 16px;
+            font-size: 14px;
             border-radius: 5px;
             cursor: pointer;
         }
         .remove-button:hover {
             background-color: #c0392b;
+        }
+        @media (max-width: 600px) {
+            .cart-table th, .cart-table td {
+                font-size: 12px;
+            }
+            .quantity-controls button {
+                font-size: 14px;
+                padding: 3px 8px;
+            }
+            .remove-button {
+                font-size: 12px;
+                padding: 3px 8px;
+            }
         }
     </style>
 </head>
@@ -214,4 +230,3 @@
     </script>
 </body>
 </html>
-
