@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="./Cafe image/Logo.png">
+    <title>Grow With Us</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, Inria Serif;
+            background: url('./Partnership Image/Background.jpg') no-repeat center center/cover;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #1b0b0b;
+        }
+
+        h1 {
+            font-size: 30px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        p {
+            font-size: 20px;
+            margin: 20px 0;
+            font-style: italic;
+            text-align: center;
+        }
+
+        .back-button {
+            width: 50px;
+            height: 50px;
+            border: none;
+            background-color: transparent;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 30px;
+            text-decoration: none;
+            color: #3d1212;
+        }
+
+        .buttons {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .button {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: #070404;
+            font-size: 14px;
+        }
+
+        .button:hover {
+            color: #070404;
+        }
+
+        .button img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 10px solid #ffffff;
+            margin-bottom: 10px;
+        }
+
+        .button .franchise {
+            border-color: #000000;
+        }
+
+        .button .job {
+            border-color: #8A8A8A;
+        }
+        .franchise-text, .job-text {
+            font-family: 'Inria Serif', serif;
+            color: #f9f9f9;
+            font-size: 20px;
+        }
+        .cta {
+            padding: 10px 20px;
+            background-color: #ff4500;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            margin-top: 10px;
+        }
+
+        .cta:hover {
+            background-color: #e03d00;
+            color: #fff;
+        }
+
+        @media (min-width: 768px) {
+            h1 {
+                font-size: 32px;
+                margin-bottom: 50px;
+            }
+
+            p {
+                font-size: 25px;
+                margin: 20px 0;
+            }
+
+            .buttons {
+                flex-direction: row;
+                justify-content: center;
+            }
+
+            .button img {
+                width: 150px;
+                height: 150px;
+            }
+
+            .cta {
+                margin-top: 20px;
+            }
+        }
+
+        @media (max-width: 767px) {
+            h1 {
+                font-size: 24px;
+            }
+
+            p {
+                font-size: 16px;
+            }
+
+            .button img {
+                width: 80px;
+                height: 80px;
+            }
+
+            .franchise-text, .job-text {
+                font-size: 16px;
+            }
+
+            .cta {
+                padding: 8px 16px;
+                font-size: 14px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 20px;
+            }
+
+            p {
+                font-size: 14px;
+            }
+
+            .button img {
+                width: 60px;
+                height: 60px;
+            }
+
+            .franchise-text, .job-text {
+                font-size: 14px;
+            }
+
+            .cta {
+                padding: 6px 12px;
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="./index.html" class="back-button">&#8592;</a>
+    <div class="container">
+        <h1>GROW WITH US</h1>
+        <hr style="width: 80%; margin: 10px auto;">
+        <p>Join us in bringing our unique cafe experience to new communities. As a franchise partner, you'll benefit from our proven business model and dedicated support every step of the way.</p>
+        
+        <div class="buttons">
+            <a href="./Form Franchise.html" class="button">
+                <img src="./Partnership Image/Handshake.jpg" class="franchise" alt="Franchise">
+                <span class="franchise-text">FRANCHISE</span>
+                <button class="cta">CONTINUE</button>
+            </a>
+            <a href="./Form Applying.html" class="button">
+                <img src="./Partnership Image/Apply.png" class="job" alt="Job Opportunities">
+                <span class="job-text">JOB OPPORTUNITIES</span>
+                <button class="cta">APPLY NOW</button>
+            </a>
+        </div>
+    </div>
+</body>
+</html>

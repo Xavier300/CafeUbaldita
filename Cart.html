@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="./Cafe image/Logo.png">
+    <title>My Cart</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #C0C78C;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .cart-container {
+            width: 90%;
+            max-width: 800px;
+            background-color: #a5ad85;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+        header .back-button, header .cart-icon {
+            font-size: 24px;
+            cursor: pointer;
+        }
+        .cart-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+        .cart-table th, .cart-table td {
+            border: 1px solid #ccc;
+            padding: 10px;
+        }
+        .cart-table th {
+            background-color: #8a9173;
+        }
+        .cart-items {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .cart-items img {
+            width: 50px;
+            height: 50px;
+            border-radius: 5px;
+            object-fit: cover;
+        }
+        .quantity-controls {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+        .quantity-controls button {
+            background-color: #5c755e;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .quantity-controls button:hover {
+            background-color: #486148;
+        }
+        .submit-button {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 20px;
+        }
+        .submit-button button {
+            background-color: #5c755e;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .submit-button button:hover {
+            background-color: #486148;
+        }
+        .remove-button {
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .remove-button:hover {
+            background-color: #c0392b;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .cart-container {
+                width: 95%;
+                padding: 15px;
+            }
+            header h1 {
+                font-size: 20px;
+            }
+            .cart-table th, .cart-table td {
+                padding: 8px;
+            }
+            .cart-items img {
+                width: 40px;
+                height: 40px;
+            }
+            .quantity-controls button {
+                padding: 3px 8px;
+                font-size: 14px;
+            }
+            .submit-button button {
+                padding: 8px 15px;
+                font-size: 14px;
+            }
+            .remove-button {
+                padding: 3px 8px;
+                font-size: 14px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header h1 {
+                font-size: 18px;
+            }
+            .cart-table th, .cart-table td {
+                padding: 6px;
+            }
+            .cart-items img {
+                width: 30px;
+                height: 30px;
+            }
+            .quantity-controls button {
+                padding: 2px 6px;
+                font-size: 12px;
+            }
+            .submit-button button {
+                padding: 6px 12px;
+                font-size: 12px;
+            }
+            .remove-button {
+                padding: 2px 6px;
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="cart-container">
+        <header>
+            <a href="Our Product.html" class="back-button" style="text-decoration: none; color: inherit;">&#8592;</a>
+            <h1>My Cart</h1>
+            <span class="cart-icon">&#128722;</span>
+        </header>
+
+        <table class="cart-table">
+            <thead>
+                <tr>
+                    <th>Item</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="cart-items">
+                <!-- Cart items will be dynamically injected here -->
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="3" style="text-align: right; font-weight: bold;">Total Amount:</td>
+                    <td id="total-price">PHP 0.00</td>
+                </tr>
+            </tfoot>
+        </table>
+
+        <div class="submit-button">
+            <a href="Checkout.html"><button type="button">Confirm</button></a>
+        </div>
+    </div>
+
+    <script>
+        function getCartItems() {
+            return JSON.parse(localStorage.getItem('cart')) || [];
+        }
+
+        function saveCartItems(cartItems) {
+            localStorage.setItem('cart', JSON.stringify(cartItems));
+        }
+
+        function renderCart() {
+            const cartItems = getCartItems();
+            const cartTableBody = document.getElementById('cart-items');
+            cartTableBody.innerHTML = '';
+            let totalPrice = 0;
+
+            cartItems.forEach((item, index) => {
+                const itemTotalPrice = item.price * item.quantity;
+                totalPrice += itemTotalPrice;
+
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>
+                        <div class="cart-items">
+                            <img src="./Product image/${item.name}.jpg" alt="${item.name}">
+                            <span>${item.name}</span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="quantity-controls">
+                            <button class="decrease" data-index="${index}">-</button>
+                            <span class="quantity">${item.quantity}</span>
+                            <button class="increase" data-index="${index}">+</button>
+                        </div>
+                    </td>
+                    <td class="price">PHP ${itemTotalPrice.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')}</td>
+                    <td><button class="remove-button" data-index="${index}">Remove</button></td>
+                `;
+                cartTableBody.appendChild(row);
+            });
+
+            document.getElementById('total-price').textContent = `PHP ${totalPrice.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')}`;
+        }
+
+        function updateQuantity(index, action) {
+            const cartItems = getCartItems();
+            if (action === 'increase') cartItems[index].quantity++;
+            if (action === 'decrease' && cartItems[index].quantity > 1) cartItems[index].quantity--;
+
+            saveCartItems(cartItems);
+            renderCart();
+        }
+
+        function removeItem(index) {
+            const cartItems = getCartItems();
+            cartItems.splice(index, 1);
+            saveCartItems(cartItems);
+            renderCart();
+        }
+
+        document.body.addEventListener('click', (event) => {
+            if (event.target.classList.contains('increase')) {
+                updateQuantity(event.target.dataset.index, 'increase');
+            } else if (event.target.classList.contains('decrease')) {
+                updateQuantity(event.target.dataset.index, 'decrease');
+            } else if (event.target.classList.contains('remove-button')) {
+                removeItem(event.target.dataset.index);
+            }
+        });
+
+        renderCart();
+    </script>
+</body>
+</html>
