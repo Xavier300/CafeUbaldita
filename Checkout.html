@@ -91,6 +91,68 @@
             font-size: 18px;
             margin-top: 20px;
         }
+
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            .cart-container {
+                width: 90%;
+                padding: 15px;
+            }
+            header h1 {
+                font-size: 20px;
+            }
+            header .back-button, header .cart-icon {
+                font-size: 20px;
+            }
+            .cart-table th, .cart-table td {
+                padding: 8px;
+            }
+            .cart-items img {
+                width: 40px;
+                height: 40px;
+            }
+            .quantity-controls span {
+                font-size: 14px;
+            }
+            .submit-button button {
+                padding: 8px 16px;
+                font-size: 14px;
+            }
+            .empty-cart-message {
+                font-size: 16px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .cart-container {
+                width: 95%;
+                padding: 10px;
+            }
+            header h1 {
+                font-size: 18px;
+            }
+            header .back-button, header .cart-icon {
+                font-size: 18px;
+            }
+            .cart-table th, .cart-table td {
+                padding: 6px;
+                font-size: 12px;
+            }
+            .cart-items img {
+                width: 30px;
+                height: 30px;
+            }
+            .quantity-controls span {
+                font-size: 12px;
+            }
+            .submit-button button {
+                padding: 6px 12px;
+                font-size: 12px;
+            }
+            .empty-cart-message {
+                font-size: 14px;
+            }
+        }
     </style>
 </head>
 <body>
